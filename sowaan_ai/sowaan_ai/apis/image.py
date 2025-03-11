@@ -90,6 +90,7 @@ def send_data_to_api(docname, productivity_flag, productivity_reason, ai_respons
         api_secret = _settings.get("instance_api_secret") 
 
         ref_name = frappe.db.get_value('Image', docname, 'ref_name')
+        
         # Prepare payload for the external API
         payload = {
             "ref_name": ref_name,
@@ -108,16 +109,18 @@ def send_data_to_api(docname, productivity_flag, productivity_reason, ai_respons
         # Make the API request
         if api_url and api_key and api_secret:
             url = f"{api_url}/task_tracker.task_tracker.apis.timesheet.update_heartbeat"
-            api_response = requests.post(api_url, json=payload, headers=headers)
-            
+            api_response = requests.post(url, json=payload, headers=headers)
+
             if api_response.status_code == 200:
                 frappe.logger().info(f"API Success: {api_response.json()}")
                 return True  # API call was successful
-            
-            frappe.logger().error(f"API Error: {api_response.status_code} - {api_response.text}")
+
+            error_message = f"API Error: {api_response.status_code} - {api_response.text}"
+            frappe.log_error(title="API Call Failure", message=error_message)  # Log error to Frappe
             return False  # API call failed
 
     except Exception as api_error:
-        frappe.logger().error(f"API Exception: {str(api_error)}")
+        error_message = f"API Exception: {str(api_error)}"
+        frappe.log_error(title="API Exception", message=error_message)  # Log exception to Frappe
         return False  # API call failed due to an exception
 
