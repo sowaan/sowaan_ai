@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-07 12:24:58.970850",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "instance_name",
+  "ref_name",
+  "column_break_eobm",
+  "productivity_flag",
+  "productivity_reason",
+  "section_break_fomc",
+  "ai_response",
+  "error_message",
+  "sent_to_instance"
+ ],
+ "fields": [
+  {
+   "fieldname": "instance_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Instance Name",
+   "options": "Sowaan AI Setting",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_eobm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Ref Name received from instance",
+   "fieldname": "ref_name",
+   "fieldtype": "Data",
+   "label": "Ref Name",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "productivity_flag",
+   "fieldtype": "Data",
+   "label": "Productivity Flag",
+   "read_only": 1
+  },
+  {
+   "fieldname": "productivity_reason",
+   "fieldtype": "Small Text",
+   "label": "Productivity Reason",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_fomc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "ai_response",
+   "fieldtype": "Small Text",
+   "label": "AI Response",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_message",
+   "fieldtype": "Small Text",
+   "label": "Error Message",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "sent_to_instance",
+   "fieldtype": "Check",
+   "label": "Sent to Instance",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-07 13:58:41.412437",
+ "modified_by": "Administrator",
+ "module": "Sowaan AI",
+ "name": "Image",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

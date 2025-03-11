@@ -1,0 +1,107 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:instance_name",
+ "creation": "2025-03-07 12:14:39.169722",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sowaanerp_integration_tab",
+  "instance_name",
+  "instance_url",
+  "instance_api_key",
+  "instance_api_secret",
+  "column_break_lmhx",
+  "ai_integration_tab",
+  "hugging_face_api_token",
+  "hugging_face_model",
+  "column_break_csee"
+ ],
+ "fields": [
+  {
+   "description": "This must be matched with Task Tracker Settings Instance Name",
+   "fieldname": "instance_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Instance Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "SowaanERP Instance with Task Tracker App Installed<br>\nhttps://github.com/sowaan/task_tracker",
+   "fieldname": "instance_url",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Instance Url",
+   "reqd": 1
+  },
+  {
+   "fieldname": "instance_api_key",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Instance Api Key",
+   "reqd": 1
+  },
+  {
+   "fieldname": "instance_api_secret",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Instance Api Secret",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_lmhx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sowaanerp_integration_tab",
+   "fieldtype": "Tab Break",
+   "label": "SowaanERP Integration"
+  },
+  {
+   "fieldname": "ai_integration_tab",
+   "fieldtype": "Tab Break",
+   "label": "AI Integration"
+  },
+  {
+   "fieldname": "hugging_face_api_token",
+   "fieldtype": "Data",
+   "label": "Hugging Face API Token"
+  },
+  {
+   "description": "https://huggingface.co/models",
+   "fieldname": "hugging_face_model",
+   "fieldtype": "Data",
+   "label": "Hugging Face Model"
+  },
+  {
+   "fieldname": "column_break_csee",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-07 12:26:57.652888",
+ "modified_by": "Administrator",
+ "module": "Sowaan AI",
+ "name": "Sowaan AI Setting",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
