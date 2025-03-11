@@ -115,7 +115,7 @@ def send_data_to_api(docname, productivity_flag, productivity_reason, ai_respons
                 # frappe.logger().info(f"API Success: {api_response.json()}")
                 return True  # API call was successful
 
-            error_message = f"API Error: {api_response.status_code} - {api_response.text}"
+            error_message = f"API Error: {url} {api_response.status_code} - {api_response.text}"
             frappe.log_error(title="API Call Failure", message=error_message)  # Log error to Frappe
             return False  # API call failed
 
