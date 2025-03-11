@@ -112,7 +112,7 @@ def send_data_to_api(docname, productivity_flag, productivity_reason, ai_respons
             api_response = requests.post(url, json=payload, headers=headers)
 
             if api_response.status_code == 200:
-                frappe.logger().info(f"API Success: {api_response.json()}")
+                # frappe.logger().info(f"API Success: {api_response.json()}")
                 return True  # API call was successful
 
             error_message = f"API Error: {api_response.status_code} - {api_response.text}"
