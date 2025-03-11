@@ -40,12 +40,14 @@
   {
    "fieldname": "productivity_flag",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Productivity Flag",
    "read_only": 1
   },
   {
    "fieldname": "productivity_reason",
    "fieldtype": "Small Text",
+   "in_list_view": 1,
    "label": "Productivity Reason",
    "read_only": 1
   },
@@ -75,7 +77,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-07 13:58:41.412437",
+ "modified": "2025-03-11 16:55:49.594856",
  "modified_by": "Administrator",
  "module": "Sowaan AI",
  "name": "Image",

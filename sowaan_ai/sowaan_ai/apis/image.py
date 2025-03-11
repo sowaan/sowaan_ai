@@ -108,14 +108,14 @@ def send_data_to_api(docname, productivity_flag, productivity_reason, ai_respons
 
         # Make the API request
         if api_url and api_key and api_secret:
-            url = f"{api_url}/task_tracker.task_tracker.apis.timesheet.update_heartbeat"
+            url = f"{api_url}/api/method/task_tracker.task_tracker.apis.timesheet.update_heartbeat"
             api_response = requests.post(url, json=payload, headers=headers)
 
             if api_response.status_code == 200:
                 # frappe.logger().info(f"API Success: {api_response.json()}")
                 return True  # API call was successful
 
-            error_message = f"API Error: {url} {api_response.status_code} - {api_response.text}"
+            error_message = f"API Error: {api_response.status_code} - {api_response.text}"
             frappe.log_error(title="API Call Failure", message=error_message)  # Log error to Frappe
             return False  # API call failed
 
