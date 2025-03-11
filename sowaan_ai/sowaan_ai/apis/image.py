@@ -38,7 +38,7 @@ def save_image(instance_name, ref_name, image=None):
                 if file_url.startswith('/'):
                     file_url = file_url[1:]
 
-                frappe.enqueue(process_screenshot, docname=heartbeat.name, ss_path=file_url, instance_name=instance_name)
+                frappe.enqueue(process_screenshot, docname=image_doc.name, ss_path=file_url, instance_name=instance_name)
 
 
         return {"success": True, "message": "Image saved successfully!"}
