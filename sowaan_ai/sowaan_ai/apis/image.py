@@ -71,7 +71,7 @@ def process_screenshot(docname, ss_path, instance_name):
             'ai_response': response
         })
 
-        sent_status = send_data_to_api(docname, "non-productive", "", response, instance_name, error_message)
+        sent_status = send_data_to_api(docname, "non-productive", "", response, instance_name, str(e))
 
         # frappe.logger().error(f"Error processing screenshot: {error_message}")
 

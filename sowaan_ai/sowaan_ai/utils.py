@@ -8,6 +8,7 @@ import json
 from transformers import pipeline
 from huggingface_hub import InferenceClient
 import datetime
+from openai import OpenAI
 from frappe.utils import get_datetime, now_datetime
 
 
@@ -33,21 +34,53 @@ def classify_productivity(text, job_description, instance_name):
     
     _settings = frappe.get_doc("Sowaan AI Setting", instance_name)
     
-    hf_api_token = _settings.hugging_face_api_token 
-    client = InferenceClient(api_key=hf_api_token)
-
+    if not _settings.ai_method:
+        return "AI Method not set in Sowaan AI Setting"
     # Define the prompt for the classification task
+
+
+    if _settings.length_of_extracted_data_for_ai and _settings.length_of_extracted_data_for_ai > 0:
+        text = text[:_settings.length_of_extracted_data_for_ai]
+    
+    #default prompt
+    prompt = f"This below text is extracted from user screen, is it office working or just chilling in office without working anything? , response should contain a plain text json object with 2 objects status (productive or non-productive) and message"
+    
+    if _settings.prompt:
+        prompt = _settings.prompt
+    
     messages = [
-        {"role": "user", "content": f"analyze this as productive or non-productive (productive means office working and non-productive means using social media, watching videos and playing games) in office work environment{JD}, response should contain a json object with 2 objects status and message:\n\n{text}"}
+        {"role": "user", "content": f"{prompt}:\n\n{text}"}
     ]
 
-    completion = client.chat.completions.create(
-        model=_settings.hugging_face_model, 
-        messages=messages,
-        max_tokens=500
-    )
+    client = InferenceClient(api_key=_settings.hugging_face_api_token)
+    model = ""
+
+    if _settings.ai_method == "OpenAI":
+        client = OpenAI(api_key=_settings.open_ai_api_key)
+        model = _settings.open_ai_model
+
+    elif _settings.ai_method == "DeepSeek":
+        client = OpenAI(
+            api_key=_settings.open_ai_api_key,
+            base_url="https://api.deepseek.com"
+            )
+        model = _settings.open_ai_model
+
+    elif _settings.ai_method == "Hugging Face":
+        client = InferenceClient(api_key=_settings.hugging_face_api_token)
+        model = _settings.hugging_face_model
+        
+
     
-    return completion.choices[0].message.content
+    completion = client.chat.completions.create(
+            model=model, 
+            messages=messages,
+            max_tokens=800
+        )
+
+    result = completion.choices[0].message.content
+
+    return result.strip('```json').strip('```').strip()
 
 
 

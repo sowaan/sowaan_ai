@@ -13,6 +13,7 @@
   "section_break_fomc",
   "ai_response",
   "error_message",
+  "text",
   "sent_to_instance"
  ],
  "fields": [
@@ -73,11 +74,17 @@
    "fieldtype": "Check",
    "label": "Sent to Instance",
    "read_only": 1
+  },
+  {
+   "fieldname": "text",
+   "fieldtype": "Small Text",
+   "label": "Text",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-11 16:55:49.594856",
+ "modified": "2025-03-21 11:58:15.627459",
  "modified_by": "Administrator",
  "module": "Sowaan AI",
  "name": "Image",

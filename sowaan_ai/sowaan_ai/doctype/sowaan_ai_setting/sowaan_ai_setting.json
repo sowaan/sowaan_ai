@@ -13,8 +13,13 @@
   "instance_api_secret",
   "column_break_lmhx",
   "ai_integration_tab",
+  "ai_method",
   "hugging_face_api_token",
   "hugging_face_model",
+  "open_ai_api_key",
+  "open_ai_model",
+  "length_of_extracted_data_for_ai",
+  "prompt",
   "column_break_csee"
  ],
  "fields": [
@@ -64,24 +69,63 @@
    "label": "AI Integration"
   },
   {
+   "depends_on": "eval:doc.ai_method === \"Hugging Face\"",
    "fieldname": "hugging_face_api_token",
    "fieldtype": "Data",
-   "label": "Hugging Face API Token"
+   "label": "Hugging Face API Token",
+   "mandatory_depends_on": "eval:doc.ai_method === \"Hugging Face\""
   },
   {
+   "depends_on": "eval:doc.ai_method === \"Hugging Face\"",
    "description": "https://huggingface.co/models",
    "fieldname": "hugging_face_model",
    "fieldtype": "Data",
-   "label": "Hugging Face Model"
+   "label": "Hugging Face Model",
+   "mandatory_depends_on": "eval:doc.ai_method === \"Hugging Face\""
   },
   {
    "fieldname": "column_break_csee",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ai_method",
+   "fieldtype": "Select",
+   "label": "AI Method",
+   "options": "Hugging Face\nOpenAI\nDeepSeek"
+  },
+  {
+   "depends_on": "eval:(doc.ai_method === \"OpenAI\" || doc.ai_method === \"DeepSeek\")",
+   "description": "If you are using DeekSeek, then put DeepSeek Api Key",
+   "fieldname": "open_ai_api_key",
+   "fieldtype": "Data",
+   "label": "Open AI API Key",
+   "length": 200,
+   "mandatory_depends_on": "eval:(doc.ai_method === \"OpenAI\" || doc.ai_method === \"DeepSeek\")"
+  },
+  {
+   "default": "250",
+   "description": "Keep it lower to reduce the plan usage",
+   "fieldname": "length_of_extracted_data_for_ai",
+   "fieldtype": "Int",
+   "label": "Length of Extracted Data for AI"
+  },
+  {
+   "depends_on": "eval:(doc.ai_method === \"OpenAI\" || doc.ai_method === \"DeepSeek\")",
+   "description": "If you are using DeekSeek, then put DeepSeek Api Key",
+   "fieldname": "open_ai_model",
+   "fieldtype": "Data",
+   "label": "Open AI Model",
+   "mandatory_depends_on": "eval:(doc.ai_method === \"OpenAI\" || doc.ai_method === \"DeepSeek\")"
+  },
+  {
+   "fieldname": "prompt",
+   "fieldtype": "Small Text",
+   "label": "Prompt"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-07 12:26:57.652888",
+ "modified": "2025-03-21 14:32:01.186308",
  "modified_by": "Administrator",
  "module": "Sowaan AI",
  "name": "Sowaan AI Setting",
