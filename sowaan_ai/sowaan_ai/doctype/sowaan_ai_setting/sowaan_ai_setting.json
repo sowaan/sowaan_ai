@@ -18,7 +18,10 @@
   "hugging_face_model",
   "open_ai_api_key",
   "open_ai_model",
+  "gemini_api_key",
+  "gemini_model",
   "length_of_extracted_data_for_ai",
+  "output_length",
   "prompt",
   "column_break_csee"
  ],
@@ -91,7 +94,7 @@
    "fieldname": "ai_method",
    "fieldtype": "Select",
    "label": "AI Method",
-   "options": "Hugging Face\nOpenAI\nDeepSeek"
+   "options": "Hugging Face\nOpenAI\nDeepSeek\nGemini"
   },
   {
    "depends_on": "eval:(doc.ai_method === \"OpenAI\" || doc.ai_method === \"DeepSeek\")",
@@ -104,6 +107,7 @@
   },
   {
    "default": "250",
+   "depends_on": "eval:doc.ai_method !== \"Gemini\"",
    "description": "Keep it lower to reduce the plan usage",
    "fieldname": "length_of_extracted_data_for_ai",
    "fieldtype": "Int",
@@ -121,11 +125,33 @@
    "fieldname": "prompt",
    "fieldtype": "Small Text",
    "label": "Prompt"
+  },
+  {
+   "depends_on": "eval:doc.ai_method === \"Gemini\"",
+   "fieldname": "gemini_api_key",
+   "fieldtype": "Data",
+   "label": "Gemini API Key",
+   "mandatory_depends_on": "eval:doc.ai_method === \"Gemini\""
+  },
+  {
+   "depends_on": "eval:doc.ai_method === \"Gemini\"",
+   "fieldname": "gemini_model",
+   "fieldtype": "Data",
+   "label": "Gemini Model",
+   "mandatory_depends_on": "eval:doc.ai_method === \"Gemini\""
+  },
+  {
+   "default": "100",
+   "depends_on": "eval:doc.ai_method === \"Gemini\"",
+   "description": "Maximum number of tokens in response",
+   "fieldname": "output_length",
+   "fieldtype": "Int",
+   "label": "Output Length"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-21 14:32:01.186308",
+ "modified": "2025-03-26 15:18:44.521703",
  "modified_by": "Administrator",
  "module": "Sowaan AI",
  "name": "Sowaan AI Setting",

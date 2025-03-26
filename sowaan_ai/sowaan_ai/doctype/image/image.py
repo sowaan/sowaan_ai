@@ -41,3 +41,19 @@ def analyze(docname, instance_name):
 			image_url = image_url[1:]
 		
 		frappe.enqueue(process_screenshot, docname=docname, ss_path=image_url, instance_name=instance_name)
+
+@frappe.whitelist()
+def bulk_analyze(docnames):
+	docnames = json.loads(docnames)
+	for docname in docnames:
+		# Fetch the attached files linked to this Image document
+		files = frappe.get_all("File", filters={"attached_to_doctype": "Image", "attached_to_name": docname}, fields=["file_url"])
+		
+		if files:
+			instance_name = frappe.db.get_value("Image", docname, "instance_name")
+			# Assuming the first file in the list is the image we want to process
+			image_url = files[0].file_url
+			if image_url.startswith('/'):
+				image_url = image_url[1:]
+			
+			frappe.enqueue(process_screenshot, docname=docname, ss_path=image_url, instance_name=instance_name)

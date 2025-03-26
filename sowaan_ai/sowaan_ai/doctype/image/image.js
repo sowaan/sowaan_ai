@@ -35,6 +35,7 @@ frappe.ui.form.on('Image', {
                 }
             });
         });
+
     }
- });
- 
+});
+
